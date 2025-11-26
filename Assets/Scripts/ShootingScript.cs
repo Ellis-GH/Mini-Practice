@@ -40,9 +40,12 @@ public class ShootingScript : MonoBehaviour
             Vector3 directionToCursor = (cursorWorldPos - transform.position).normalized;
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToCursor);
-            if (hit.collider.CompareTag("Enemy"))
+            if(hit)
             {
-                // Get the enemy's script, deal damage to them
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    // Get the enemy's script, deal damage to them
+                }
             }
         }
         else if(gameManager.getAmmoBalance() <= 0) { Debug.Log("Click... no bullets ;("); }

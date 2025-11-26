@@ -5,7 +5,8 @@ public class GameManagerScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerHealth = maxPlayerHealth;
+        ammoBalance = maxAmmoBalance; //not permanent I think
     }
 
     // Update is called once per frame
