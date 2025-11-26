@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class PlayerMovementScript : MonoBehaviour
     private Vector2 moveInput;
 
     [SerializeField] float movementSpeed = 5f;
-    
+
+    ShootingScript shootingScript;
 
     private void Awake()
     {
@@ -21,9 +23,12 @@ public class PlayerMovementScript : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         spriteRotator = GetComponent<SpriteRotationScript>();
+
+        shootingScript = GetComponent<ShootingScript>();
     }
     private void OnEnable()
     {
+        controls.Player.Attack.performed += OnLeftClick;
         controls.Player.Enable();
     }
     private void OnDisable()
@@ -41,5 +46,8 @@ public class PlayerMovementScript : MonoBehaviour
         //If not multiplied in, the player will move at [movementSpeed] every frame, which means they move slower at a slow framerate.
     }
 
-
+    private void OnLeftClick(InputAction.CallbackContext ctx)
+    {
+        shootingScript.Fire();
+    }
 }
