@@ -30,6 +30,7 @@ public class ShootingScript : MonoBehaviour
     {
         if (!onCooldown && gameManager.getAmmoBalance() > 0)
         {
+            gameManager.adjustAmmoBalance(-1);
             StartCoroutine("FireCooldown");
             //Gun FX
 
