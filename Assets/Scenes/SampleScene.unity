@@ -350,6 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029470433}
   - component: {fileID: 1029470435}
+  - component: {fileID: 1029470436}
   - component: {fileID: 1029470432}
   - component: {fileID: 1029470434}
   m_Layer: 0
@@ -406,7 +407,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -326475028279712610, guid: 7eff3483049c40c45b47e37e2350f69a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -472,6 +473,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   movementSpeed: 5
+--- !u!114 &1029470436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029470431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89aad80d5d1ae05499b4bfea5ae2d815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  sprites:
+  - {fileID: 3419604406496634017, guid: 9046c8150fd9b5942b3672bb90c2fd0f, type: 3}
+  - {fileID: 4408468994456774736, guid: f576217066488cb44a1b9af528694e80, type: 3}
+  - {fileID: -326475028279712610, guid: 7eff3483049c40c45b47e37e2350f69a, type: 3}
+  - {fileID: -6424205022865740663, guid: ec6cf101b21b13f41a89a6c73f4c47e4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
