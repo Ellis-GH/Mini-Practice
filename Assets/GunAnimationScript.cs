@@ -10,7 +10,7 @@ public class GunAnimationScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerPos = GetComponentInParent<Transform>();
+        playerPos = GameObject.FindWithTag("Player").transform; //as long as only the play has this tag
     }
 
     // Update is called once per frame
@@ -28,5 +28,7 @@ public class GunAnimationScript : MonoBehaviour
 
         float gunRotation = Mathf.Atan2(directionToCursor.y, directionToCursor.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, gunRotation+180);
+
+        //Debug.Log("Direction to cursor: " + directionToCursor + " distance to cursor: " + Vector3.Distance(playerPos.position, cursorWorldPos));
     }
 }
