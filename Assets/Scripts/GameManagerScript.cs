@@ -43,7 +43,6 @@ public class GameManagerScript : MonoBehaviour
     {
         playerMovementSpeed += speedDelta;
         if(playerMovementScript) { playerMovementScript.setMovementSpeed(playerMovementSpeed); }
-        
     }
 
     public void GameOver()

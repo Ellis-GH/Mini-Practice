@@ -15,6 +15,11 @@ public class ShootingScript : MonoBehaviour
     [SerializeField] float fireCooldown = 1;
     bool onCooldown = false;
 
+    [SerializeField] float knockbackDistance = 3;
+    [SerializeField] float invincTime = 2;
+    bool invincible = false;
+
+
     GameManagerScript gameManager;
 
 
@@ -65,10 +70,25 @@ public class ShootingScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && !invincible)
         {
             Debug.Log("Ow!");
             gameManager.adjustPlayerHealth(-collision.GetComponent<EnemyScript>().getAttackDamage());
+
+            Vector2 dirFromEnemy = (transform.position - collision.transform.position).normalized;
+
+            //GetComponent<Rigidbody2D>().MovePosition(dirFromEnemy * knockbackDistance); //Not working
+
+            StartCoroutine("InvinceTimer");
         }
+    }
+
+    IEnumerator InvinceTimer()
+    {
+        invincible = true;
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(invincTime);
+        GetComponent<SpriteRenderer>().color = Color.white;
+        invincible = false;
     }
 }

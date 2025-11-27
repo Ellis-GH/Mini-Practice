@@ -2271,6 +2271,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   bulletRange: 100
   fireCooldown: 0.1
+  knockbackDistance: 10
+  invincTime: 2
 --- !u!61 &1029470438
 BoxCollider2D:
   m_ObjectHideFlags: 0
