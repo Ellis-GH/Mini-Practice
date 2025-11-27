@@ -230,14 +230,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 188735027}
+  - component: {fileID: 188735030}
   - component: {fileID: 188735026}
   - component: {fileID: 188735025}
   - component: {fileID: 188735028}
   - component: {fileID: 188735029}
-  - component: {fileID: 188735030}
-  m_Layer: 0
+  - component: {fileID: 188735031}
+  m_Layer: 6
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,6 +379,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1549148414fdfa84e92001341c26f826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  maxHealth: 3
+  detectionRange: 100
+  movementSpeed: 3.5
+  damage: 1
+--- !u!70 &188735031
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188735024}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.004909754, y: 0}
+  m_Size: {x: 1.0791526, y: 1.9285715}
+  m_Direction: 0
 --- !u!1 &214827005
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,7 +431,7 @@ GameObject:
   - component: {fileID: 214827006}
   - component: {fileID: 214827008}
   - component: {fileID: 214827007}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2077,7 +2119,7 @@ GameObject:
   - component: {fileID: 1029470432}
   - component: {fileID: 1029470434}
   - component: {fileID: 1029470438}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2375,6 +2417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1517191759}
   - component: {fileID: 1517191758}
+  - component: {fileID: 1517191760}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2396,6 +2439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   maxPlayerHealth: 10
   maxAmmoBalance: 250
+  attackDamage: 1
 --- !u!4 &1517191759
 Transform:
   m_ObjectHideFlags: 0
@@ -2411,6 +2455,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1517191760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1517191757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1eb2f4b9509eb4498fc05d11818864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneManagerScript
 --- !u!1 &1552458220
 GameObject:
   m_ObjectHideFlags: 0
