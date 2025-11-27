@@ -51,12 +51,17 @@ public class ShootingScript : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToCursor, bulletRange, layerMask);
             if (hit)
             {
+                gunAnimationScript.ShootAnimation(hit.point);
                 Debug.Log("Hit! " + hit.collider.tag);
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     Debug.Log("Hit an enemy!");
                     hit.collider.GetComponent<EnemyScript>().TakeDamage(gameManager.getAttackDamage());
                 }
+            }
+            else
+            {
+                gunAnimationScript.ShootAnimation(directionToCursor * 300);
             }
         }
         else if (gameManager.getAmmoBalance() <= 0) { Debug.Log("Click... no bullets ;("); }
