@@ -5,7 +5,9 @@ public class GameManagerScript : MonoBehaviour
     PlayerMovementScript playerMovementScript;
     SceneManagerScript sceneManagerScript;
 
-    private int currentLevel = 0;//Shop scene atm
+    int lvlOneSceneNum = 2;
+
+    private int currentLevel;//Shop scene atm
 
     private float playerMovementSpeed = 5;
 
@@ -24,11 +26,17 @@ public class GameManagerScript : MonoBehaviour
     public void LoadNextLevel()
     {
         sceneManagerScript.GoToLevel(currentLevel+1);
+        currentLevel += 1;
+    }
+
+    public void LoadFirstLevel()
+    {
+        sceneManagerScript.GoToLevel(lvlOneSceneNum);
     }
 
     public void LoadShopScene()
     {
-        sceneManagerScript.GoToLevel(0);
+        sceneManagerScript.GoToLevel(1); //Shop scene is assigned as 1
     }
 
     public void AdjustPlayerSpeed( float speedDelta)
@@ -36,6 +44,12 @@ public class GameManagerScript : MonoBehaviour
         playerMovementSpeed += speedDelta;
         if(playerMovementScript) { playerMovementScript.setMovementSpeed(playerMovementSpeed); }
         
+    }
+
+    public void GameOver()
+    {
+        currentLevel = lvlOneSceneNum;
+        sceneManagerScript.GoToLevel(0); //Gameover scene is assigned as 0
     }
 
     [SerializeField] int maxPlayerHealth = 10;
@@ -54,7 +68,7 @@ public class GameManagerScript : MonoBehaviour
         if (playerHealth == 0)
         {
             Debug.Log("Game Over!");
-            sceneManagerScript.GoToLevel(currentLevel);
+            GameOver();
         }
     }
 
