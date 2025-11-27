@@ -3,25 +3,39 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     PlayerMovementScript playerMovementScript;
+    SceneManagerScript sceneManagerScript;
+
+    private int currentLevel = 0;//Shop scene atm
+
+    private float playerMovementSpeed = 5;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerMovementScript = FindAnyObjectByType<PlayerMovementScript>();
+        sceneManagerScript = FindAnyObjectByType<SceneManagerScript>();
+
+        playerMovementScript.setMovementSpeed(playerMovementSpeed);
 
         playerHealth = maxPlayerHealth;
         ammoBalance = maxAmmoBalance; //not permanent I think
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadNextLevel()
     {
-        
+        sceneManagerScript.GoToLevel(currentLevel+1);
+    }
+
+    public void LoadShopScene()
+    {
+        sceneManagerScript.GoToLevel(0);
     }
 
     public void AdjustPlayerSpeed( float speedDelta)
     {
-        playerMovementScript.setMovementSpeed(playerMovementScript.getMovementSpeed() + speedDelta);
+        playerMovementSpeed += speedDelta;
+        if(playerMovementScript) { playerMovementScript.setMovementSpeed(playerMovementSpeed); }
+        
     }
 
     [SerializeField] int maxPlayerHealth = 10;

@@ -1,12 +1,13 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class ShopScript : MonoBehaviour
 {
     GameManagerScript gameManagerScript;
 
-    [SerializeField] Text costText;
-    [SerializeField] Text ammoText;
+    [SerializeField] TMP_Text costText;
+    [SerializeField] TMP_Text ammoText;
 
     int cost = 0; //Cost to be determined by the level
 
