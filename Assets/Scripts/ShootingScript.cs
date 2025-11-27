@@ -21,6 +21,7 @@ public class ShootingScript : MonoBehaviour
 
 
     GameManagerScript gameManager;
+    GunAnimationScript gunAnimationScript;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,6 +31,7 @@ public class ShootingScript : MonoBehaviour
     {
         layerMask = ~LayerMask.GetMask("Player"); //Can be used to exclude layers from raycast collision
         gameManager = FindAnyObjectByType<GameManagerScript>();
+        gunAnimationScript = FindAnyObjectByType<GunAnimationScript>();
     }
 
 
