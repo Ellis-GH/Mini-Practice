@@ -16,6 +16,6 @@ public class DebugUIScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textBox.text = "Health: " + gameManagerScript.getplayerHealth() + "\nAmmo: " + gameManagerScript.getAmmoBalance();
+        textBox.text = "Health: " + gameManagerScript.getPlayerHealth() + "\nAmmo: " + gameManagerScript.getAmmoBalance();
     }
 }

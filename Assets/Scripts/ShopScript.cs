@@ -23,7 +23,7 @@ public class ShopScript : MonoBehaviour
         if(gameManagerScript.getAmmoBalance() >= cost)
         {
             gameManagerScript.adjustAmmoBalance(-cost);
-            gameManagerScript.adjustPlayerHealth(cost);
+            gameManagerScript.adjustPlayerHealth(1);
             Debug.Log("Buying Health for: " + cost);
         }
     }
@@ -33,7 +33,7 @@ public class ShopScript : MonoBehaviour
         if (gameManagerScript.getAmmoBalance() >= cost)
         {
             gameManagerScript.adjustAmmoBalance(-cost);
-            //gameManagerScript.adjustPlayerHealth(cost); ADJUST PLAYER DAMAGE
+            gameManagerScript.adjustAttackDamage(1);
             Debug.Log("Buying Damage for: " + cost);
         }
     }
@@ -43,7 +43,7 @@ public class ShopScript : MonoBehaviour
         if (gameManagerScript.getAmmoBalance() >= cost)
         {
             gameManagerScript.adjustAmmoBalance(-cost);
-            //gameManagerScript.adjustPlayerHealth(cost); ADJUST PLAYER SPEED
+            gameManagerScript.AdjustPlayerSpeed(1); 
             Debug.Log("Buying Speed for: " + cost);
         }
     }

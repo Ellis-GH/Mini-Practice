@@ -50,4 +50,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         shootingScript.Fire();
     }
+
+    public void setMovementSpeed( float newMovementSpeed){ movementSpeed = newMovementSpeed; }
+    public float getMovementSpeed(){ return movementSpeed; }
 }
