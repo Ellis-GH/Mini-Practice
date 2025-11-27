@@ -3,11 +3,15 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
     PlayerMovementScript playerMovementScript;
+    SceneManagerScript sceneManagerScript;
+
+    private int currentLevel;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerMovementScript = FindAnyObjectByType<PlayerMovementScript>();
+        sceneManagerScript = FindAnyObjectByType<SceneManagerScript>();
 
         playerHealth = maxPlayerHealth;
         ammoBalance = maxAmmoBalance; //not permanent I think
@@ -17,6 +21,16 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void LoadNextLevel()
+    {
+        sceneManagerScript.GoToLevel(currentLevel+1);
+    }
+
+    public void LoadShopScene()
+    {
+        sceneManagerScript.GoToLevel(0);
     }
 
     public void AdjustPlayerSpeed( float speedDelta)
