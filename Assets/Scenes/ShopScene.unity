@@ -1082,6 +1082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   costText: {fileID: 263803268}
   ammoText: {fileID: 10752869}
+  purchaseSound: {fileID: 8300000, guid: 0e8f3765c0f43df41a7eea4db3be99f8, type: 3}
 --- !u!4 &1226230745
 Transform:
   m_ObjectHideFlags: 0

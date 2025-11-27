@@ -23,6 +23,8 @@ public class ShootingScript : MonoBehaviour
     GameManagerScript gameManager;
     GunAnimationScript gunAnimationScript;
 
+    [SerializeField] AudioClip hurtSound;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     LayerMask layerMask;
@@ -84,8 +86,8 @@ public class ShootingScript : MonoBehaviour
 
             Vector2 dirFromEnemy = (transform.position - collision.transform.position).normalized;
 
-            //GetComponent<Rigidbody2D>().MovePosition(dirFromEnemy * knockbackDistance); //Not working
-
+            SoundFXManager.instance.PlaySoundFXClip(hurtSound, transform, 1f);
+            
             StartCoroutine("InvinceTimer");
         }
     }

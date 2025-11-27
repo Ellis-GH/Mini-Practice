@@ -7,6 +7,8 @@ public class GunAnimationScript : MonoBehaviour
     SpriteRenderer spriteRenderer;
     LineRenderer lineRenderer;
 
+    [SerializeField] AudioClip gunFireSound;
+
     [SerializeField] float armLength;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,5 +63,7 @@ public class GunAnimationScript : MonoBehaviour
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, transform.position);
         lineRenderer.SetPosition(1, hitPoint);
+
+        SoundFXManager.instance.PlaySoundFXClip(gunFireSound, transform, 1f);
     }
 }
