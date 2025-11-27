@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopScript : MonoBehaviour
 {
     GameManagerScript gameManagerScript;
+
+    [SerializeField] Text costText;
+    [SerializeField] Text ammoText;
 
     int cost = 0; //Cost to be determined by the level
 
@@ -10,12 +14,9 @@ public class ShopScript : MonoBehaviour
     void Start()
     {
         gameManagerScript = FindAnyObjectByType<GameManagerScript>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        costText.text = "Cost\n" + cost;
+        ammoText.text = "Ammo\n" + gameManagerScript.getAmmoBalance();
     }
 
     public void BuyHealth()
