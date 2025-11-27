@@ -13,9 +13,9 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         playerMovementScript = FindAnyObjectByType<PlayerMovementScript>();
-        sceneManagerScript = FindAnyObjectByType<SceneManagerScript>();
+        sceneManagerScript = GetComponent<SceneManagerScript>();
 
-        playerMovementScript.setMovementSpeed(playerMovementSpeed);
+        if (playerMovementScript) { playerMovementScript.setMovementSpeed(playerMovementSpeed); }
 
         playerHealth = maxPlayerHealth;
         ammoBalance = maxAmmoBalance; //not permanent I think
@@ -48,9 +48,17 @@ public class GameManagerScript : MonoBehaviour
     private int ammoBalance;
     public int getPlayerHealth() { return playerHealth; }
     public void setPlayerHealth(int newPlayerHealth) { playerHealth = Mathf.Clamp(newPlayerHealth, 0, maxPlayerHealth); }
-    public void adjustPlayerHealth(int playerHealthDelta) { playerHealth = Mathf.Clamp(playerHealth + playerHealthDelta, 0, maxPlayerHealth); }
+    public void adjustPlayerHealth(int playerHealthDelta) 
+    { 
+        playerHealth = Mathf.Clamp(playerHealth + playerHealthDelta, 0, maxPlayerHealth); 
+        if (playerHealth == 0)
+        {
+            Debug.Log("Game Over!");
+            sceneManagerScript.GoToLevel(currentLevel);
+        }
+    }
 
-    private int attackDamage;
+    [SerializeField] private int attackDamage;
     public int getAttackDamage() { return attackDamage; }
     public void setAttackDamage(int newAttackDamage) { attackDamage = newAttackDamage; }
     public void adjustAttackDamage(int attackDamageDelta) { attackDamage += attackDamageDelta; }
