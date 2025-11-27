@@ -6,7 +6,9 @@ public class ShootingScript : MonoBehaviour
 {
     // Shooting is triggered in the PlayerMovementScript
 
-    //cooldown, play animation
+    //Expanded to be a combat script instead
+
+    //play animation
 
     [SerializeField] float bulletRange = 100;
 
@@ -21,7 +23,7 @@ public class ShootingScript : MonoBehaviour
 
     private void Awake()
     {
-        layerMask = LayerMask.GetMask(""); //Can be used to exclude layers from raycast collision
+        layerMask = ~LayerMask.GetMask("Player"); //Can be used to exclude layers from raycast collision
         gameManager = FindAnyObjectByType<GameManagerScript>();
     }
 
@@ -39,16 +41,18 @@ public class ShootingScript : MonoBehaviour
             cursorWorldPos.z = 0; //We're 2D
             Vector3 directionToCursor = (cursorWorldPos - transform.position).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToCursor);
-            if(hit)
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToCursor, bulletRange, layerMask);
+            if (hit)
             {
+                Debug.Log("Hit! " + hit.collider.tag);
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    // Get the enemy's script, deal damage to them
+                    Debug.Log("Hit an enemy!");
+                    hit.collider.GetComponent<EnemyScript>().TakeDamage(gameManager.getAttackDamage());
                 }
             }
         }
-        else if(gameManager.getAmmoBalance() <= 0) { Debug.Log("Click... no bullets ;("); }
+        else if (gameManager.getAmmoBalance() <= 0) { Debug.Log("Click... no bullets ;("); }
         else { Debug.Log("On cooldown!"); }
     }
 
@@ -57,5 +61,14 @@ public class ShootingScript : MonoBehaviour
         onCooldown = true;
         yield return new WaitForSeconds(fireCooldown);
         onCooldown = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Debug.Log("Ow!");
+            gameManager.adjustPlayerHealth(-collision.GetComponent<EnemyScript>().getAttackDamage());
+        }
     }
 }

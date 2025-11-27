@@ -2,19 +2,41 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
+    PlayerMovementScript playerMovementScript;
+    SceneManagerScript sceneManagerScript;
+
+    private int currentLevel = 0;//Shop scene atm
+
+    private float playerMovementSpeed = 5;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerMovementScript = FindAnyObjectByType<PlayerMovementScript>();
+        sceneManagerScript = GetComponent<SceneManagerScript>();
+
+        if (playerMovementScript) { playerMovementScript.setMovementSpeed(playerMovementSpeed); }
+
         playerHealth = maxPlayerHealth;
         ammoBalance = maxAmmoBalance; //not permanent I think
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadNextLevel()
     {
-        
+        sceneManagerScript.GoToLevel(currentLevel+1);
     }
 
+    public void LoadShopScene()
+    {
+        sceneManagerScript.GoToLevel(0);
+    }
+
+    public void AdjustPlayerSpeed( float speedDelta)
+    {
+        playerMovementSpeed += speedDelta;
+        if(playerMovementScript) { playerMovementScript.setMovementSpeed(playerMovementSpeed); }
+        
+    }
 
     [SerializeField] int maxPlayerHealth = 10;
     private int playerHealth;
@@ -24,7 +46,20 @@ public class GameManagerScript : MonoBehaviour
 
     [SerializeField] int maxAmmoBalance = 250; //ammo balance cap
     private int ammoBalance;
-    public int getplayerHealth() { return playerHealth; }
+    public int getPlayerHealth() { return playerHealth; }
     public void setPlayerHealth(int newPlayerHealth) { playerHealth = Mathf.Clamp(newPlayerHealth, 0, maxPlayerHealth); }
-    public void adjustPlayerHealth(int playerHealthDelta) { playerHealth = Mathf.Clamp(playerHealth + playerHealthDelta, 0, maxPlayerHealth); }
+    public void adjustPlayerHealth(int playerHealthDelta) 
+    { 
+        playerHealth = Mathf.Clamp(playerHealth + playerHealthDelta, 0, maxPlayerHealth); 
+        if (playerHealth == 0)
+        {
+            Debug.Log("Game Over!");
+            sceneManagerScript.GoToLevel(currentLevel);
+        }
+    }
+
+    [SerializeField] private int attackDamage;
+    public int getAttackDamage() { return attackDamage; }
+    public void setAttackDamage(int newAttackDamage) { attackDamage = newAttackDamage; }
+    public void adjustAttackDamage(int attackDamageDelta) { attackDamage += attackDamageDelta; }
 }

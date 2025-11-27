@@ -38,8 +38,15 @@ public class PlayerMovementScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + moveInput * movementSpeed * Time.deltaTime);
-        if(moveInput.magnitude != 0) { spriteRotator.SetOrientation(moveInput); }
+        rb.MovePosition(rb.position + moveInput * movementSpeed * Time.deltaTime); //Move player
+
+        Vector2 cursorScreenPos = Mouse.current.position.ReadValue();
+        Vector3 cursorWorldPos = Camera.main.ScreenToWorldPoint(cursorScreenPos);
+        cursorWorldPos.z = 0; //We're 2D
+        Vector3 directionToCursor = (cursorWorldPos - transform.position).normalized;
+        spriteRotator.SetOrientation(directionToCursor); //Rotate player
+
+        //if(moveInput.magnitude != 0) { spriteRotator.SetOrientation(moveInput); }
 
         //Debug.Log("Move input is: " + moveInput);
         //Time.deltaTime is a small number, like 0.01, but is tied to framerate, or the change in time between now and the last frame.
@@ -50,4 +57,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         shootingScript.Fire();
     }
+
+    public void setMovementSpeed( float newMovementSpeed){ movementSpeed = newMovementSpeed; }
+    public float getMovementSpeed(){ return movementSpeed; }
 }
