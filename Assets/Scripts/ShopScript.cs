@@ -9,6 +9,8 @@ public class ShopScript : MonoBehaviour
     [SerializeField] TMP_Text costText;
     [SerializeField] TMP_Text ammoText;
 
+    [SerializeField] AudioClip purchaseSound;
+
     int cost = 0; //Cost to be determined by the level
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +29,7 @@ public class ShopScript : MonoBehaviour
             gameManagerScript.adjustAmmoBalance(-cost);
             gameManagerScript.adjustPlayerHealth(1);
             Debug.Log("Buying Health for: " + cost);
+            SoundFXManager.instance.PlaySoundFXClip(purchaseSound, transform, 1f);
         }
     }
 
