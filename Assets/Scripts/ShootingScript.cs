@@ -32,8 +32,12 @@ public class ShootingScript : MonoBehaviour
     private void Awake()
     {
         layerMask = ~LayerMask.GetMask("Player"); //Can be used to exclude layers from raycast collision
-        gameManager = FindAnyObjectByType<GameManagerScript>();
         gunAnimationScript = FindAnyObjectByType<GunAnimationScript>();
+    }
+
+    private void Start()
+    {
+        gameManager = GameManagerScript.Instance;
     }
 
 

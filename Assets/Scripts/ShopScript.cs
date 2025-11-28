@@ -11,12 +11,14 @@ public class ShopScript : MonoBehaviour
 
     [SerializeField] AudioClip purchaseSound;
 
-    int cost = 0; //Cost to be determined by the level
+    int cost; //Cost to be determined by the level
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManagerScript = FindAnyObjectByType<GameManagerScript>();
+        gameManagerScript = GameManagerScript.Instance;
+
+        cost = gameManagerScript.GetCurrentLevel();
 
         costText.text = "Cost\n" + cost;
         ammoText.text = "Ammo\n" + gameManagerScript.getAmmoBalance();
@@ -51,5 +53,10 @@ public class ShopScript : MonoBehaviour
             gameManagerScript.AdjustPlayerSpeed(1); 
             Debug.Log("Buying Speed for: " + cost);
         }
+    }
+
+    public void ExitShop()
+    {
+        gameManagerScript.LoadFirstLevel();
     }
 }
