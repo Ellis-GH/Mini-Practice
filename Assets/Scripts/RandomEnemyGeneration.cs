@@ -22,7 +22,7 @@ public class RandomEnemyGeneration : MonoBehaviour
     
     void Start()
     {
-        for (int i = 0; i < max; i++)
+        for (int i = 0; i < max + GameManagerScript.Instance.GetCurrentLevel(); i++)
         {
             // Prefab, position, rotation
             Instantiate(EnemyPrefab, NavMeshPosition(), Quaternion.identity);

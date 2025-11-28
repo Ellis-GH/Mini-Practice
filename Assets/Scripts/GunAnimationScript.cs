@@ -40,9 +40,9 @@ public class GunAnimationScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, gunRotation+180);
 
         if(Vector2.Dot(transform.up, Vector2.right) > 0) { //Put gun behind player when up
-            spriteRenderer.sortingOrder = 0;
+            spriteRenderer.sortingOrder = 4;
         } else {
-            spriteRenderer.sortingOrder = 2;
+            spriteRenderer.sortingOrder = 6;
         }
 
         if (Vector2.Dot(transform.right, Vector2.right) < 0) { //Flip gun on the other half 

@@ -10,9 +10,8 @@ public class GameOverScript : MonoBehaviour
         SoundFXManager.instance.PlaySoundFXClip(gameOverSound, transform, 1f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RestartGame()
     {
-        
+        GameManagerScript.Instance.Restart();
     }
 }
