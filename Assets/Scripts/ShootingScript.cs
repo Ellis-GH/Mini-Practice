@@ -90,6 +90,9 @@ public class ShootingScript : MonoBehaviour
             
             StartCoroutine("InvinceTimer");
         }
+        else if(collision.CompareTag("Exit")) {
+            gameManager.LoadShopScene();
+        }
     }
 
     IEnumerator InvinceTimer()
