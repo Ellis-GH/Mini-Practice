@@ -3,13 +3,13 @@ using UnityEngine.AI;
 
 public class RandomEnemyGeneration : MonoBehaviour
 {
-    int max = 2;
+    int max = 10;
     public GameObject EnemyPrefab;
     Vector2 GeneratedPosition()
     {
         int x, y;
-        x = Random.Range(0, 50);
-        y = Random.Range(0, 50);
+        x = Random.Range(-50, 50);
+        y = Random.Range(-40, 40);
         return new Vector2(x, y);
     }
     
@@ -24,6 +24,7 @@ public class RandomEnemyGeneration : MonoBehaviour
     {
         for (int i = 0; i < max; i++)
         {
+            // Prefab, position, rotation
             Instantiate(EnemyPrefab, NavMeshPosition(), Quaternion.identity);
         }
     }
