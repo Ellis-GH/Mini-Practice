@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4691124590166712374}
   - component: {fileID: 4571014612671669316}
+  - component: {fileID: 780648045677968179}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,3 +47,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   maxPlayerHealth: 10
   maxAmmoBalance: 250
+  attackDamage: 0
+--- !u!114 &780648045677968179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689030155226293080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1eb2f4b9509eb4498fc05d11818864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneManagerScript

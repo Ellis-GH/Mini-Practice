@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5e59311f8a26c214db0a572bdef89f24
+guid: 854bb7258311e214486810ffa472d9f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2439290818910609112
-    second: tempGun_0
+      213: -4718114373533500565
+    second: Gameover_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tempGun_0
+      name: Gameover_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 10
-        height: 5
-      alignment: 9
-      pivot: {x: 0.5, y: 0.9240001}
+        width: 200
+        height: 216
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8ded90d631a1ad120800000000000000
-      internalID: 2439290818910609112
+      spriteID: b6bfed399f3e58eb0800000000000000
+      internalID: -4718114373533500565
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 79233a97920d3254aaba1dd315257dfe
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tempGun_0: 2439290818910609112
+      Gameover_0: -4718114373533500565
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -18,6 +18,8 @@ public class EnemyScript : MonoBehaviour
 
     SpriteRotationScript spriteRotator;
 
+    [SerializeField] AudioClip deathSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -60,6 +62,7 @@ public class EnemyScript : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            SoundFXManager.instance.PlaySoundFXClip(deathSound, transform, 1f);
             Destroy(gameObject);
         }
     }

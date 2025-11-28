@@ -5,14 +5,22 @@ public class GunAnimationScript : MonoBehaviour
 {
     private Transform playerPos;
     SpriteRenderer spriteRenderer;
+    LineRenderer lineRenderer;
+
+    [SerializeField] AudioClip gunFireSound;
 
     [SerializeField] float armLength;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        lineRenderer = GetComponent<LineRenderer>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerPos = GameObject.FindWithTag("Player").transform; //as long as only the play has this tag
+
+        
+        lineRenderer.startColor = Color.gray;
+        lineRenderer.endColor = Color.darkGray;
     }
 
     // Update is called once per frame
@@ -43,7 +51,19 @@ public class GunAnimationScript : MonoBehaviour
             spriteRenderer.flipY = false;
         }
 
-
+        lineRenderer.startWidth = Mathf.Clamp(lineRenderer.startWidth - (1 * Time.deltaTime), 0, 1);
+        lineRenderer.endWidth = Mathf.Clamp(lineRenderer.endWidth - (1 * Time.deltaTime), 0, 1);
         //Debug.Log("Direction to cursor: " + directionToCursor + " distance to cursor: " + Vector3.Distance(playerPos.position, cursorWorldPos));
+    }
+
+    public void ShootAnimation(Vector3 hitPoint)
+    {
+        lineRenderer.startWidth = 0.01f;
+        lineRenderer.endWidth = 0.1f;
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(1, hitPoint);
+
+        SoundFXManager.instance.PlaySoundFXClip(gunFireSound, transform, 1f);
     }
 }

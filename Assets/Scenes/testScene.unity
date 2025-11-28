@@ -2222,6 +2222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   maxPlayerHealth: 10
   maxAmmoBalance: 250
+  attackDamage: 0
 --- !u!4 &1517191759
 Transform:
   m_ObjectHideFlags: 0

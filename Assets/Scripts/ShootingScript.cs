@@ -15,7 +15,15 @@ public class ShootingScript : MonoBehaviour
     [SerializeField] float fireCooldown = 1;
     bool onCooldown = false;
 
+    [SerializeField] float knockbackDistance = 3;
+    [SerializeField] float invincTime = 2;
+    bool invincible = false;
+
+
     GameManagerScript gameManager;
+    GunAnimationScript gunAnimationScript;
+
+    [SerializeField] AudioClip hurtSound;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +33,7 @@ public class ShootingScript : MonoBehaviour
     {
         layerMask = ~LayerMask.GetMask("Player"); //Can be used to exclude layers from raycast collision
         gameManager = FindAnyObjectByType<GameManagerScript>();
+        gunAnimationScript = FindAnyObjectByType<GunAnimationScript>();
     }
 
 
@@ -44,12 +53,17 @@ public class ShootingScript : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToCursor, bulletRange, layerMask);
             if (hit)
             {
+                gunAnimationScript.ShootAnimation(hit.point);
                 Debug.Log("Hit! " + hit.collider.tag);
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     Debug.Log("Hit an enemy!");
                     hit.collider.GetComponent<EnemyScript>().TakeDamage(gameManager.getAttackDamage());
                 }
+            }
+            else
+            {
+                gunAnimationScript.ShootAnimation(directionToCursor * 300);
             }
         }
         else if (gameManager.getAmmoBalance() <= 0) { Debug.Log("Click... no bullets ;("); }
@@ -65,10 +79,25 @@ public class ShootingScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && !invincible)
         {
             Debug.Log("Ow!");
             gameManager.adjustPlayerHealth(-collision.GetComponent<EnemyScript>().getAttackDamage());
+
+            Vector2 dirFromEnemy = (transform.position - collision.transform.position).normalized;
+
+            SoundFXManager.instance.PlaySoundFXClip(hurtSound, transform, 1f);
+            
+            StartCoroutine("InvinceTimer");
         }
+    }
+
+    IEnumerator InvinceTimer()
+    {
+        invincible = true;
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(invincTime);
+        GetComponent<SpriteRenderer>().color = Color.white;
+        invincible = false;
     }
 }
