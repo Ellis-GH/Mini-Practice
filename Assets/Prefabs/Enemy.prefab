@@ -53,6 +53,7 @@ MonoBehaviour:
   detectionRange: 100
   movementSpeed: 3.5
   damage: 1
+  deathSound: {fileID: 8300000, guid: 777a6a465db2e1141bccc22fa0dc38c0, type: 3}
 --- !u!114 &7350807879637749014
 MonoBehaviour:
   m_ObjectHideFlags: 0
