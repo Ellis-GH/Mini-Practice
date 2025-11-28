@@ -46,6 +46,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void LoadShopScene()
     {
+        ammoBalance += currentLevel;
         sceneManagerScript.GoToLevel(1); //Shop scene is assigned as 1
     }
 
