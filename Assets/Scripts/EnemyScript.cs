@@ -51,6 +51,15 @@ public class EnemyScript : MonoBehaviour
                 agent.destination = playerPos;
             }
         }
+
+        if(transform.position.y < playerMovementScript.transform.position.y)
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = 6;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = 4;
+        }
     }
 
     private void FixedUpdate()

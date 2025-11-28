@@ -61,6 +61,17 @@ public class GameManagerScript : MonoBehaviour
         sceneManagerScript.GoToLevel(0); //Gameover scene is assigned as 0
     }
 
+    public void Restart()
+    {
+        playerHealth = startPlayerHealth;
+        ammoBalance = startAmmoBalance; //not permanent I think
+        playerMovementSpeed = 5;
+        attackDamage = 1;
+        currentLevel = lvlOneSceneNum;
+
+        LoadFirstLevel();
+    }
+
     [SerializeField] int startPlayerHealth = 5;
     private int playerHealth;
     public int getAmmoBalance() { return ammoBalance; }
